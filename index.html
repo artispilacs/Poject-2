@@ -4,9 +4,208 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hamlet, Act III, Scene I</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #f5f1e8;
+      color: #222;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .title-image {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+
+    .meta {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .poem {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .poem p {
+      margin: 0 0 8px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .social-column {
+      position: fixed;
+      top: 50%;
+      right: 18px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .social-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.08);
+      opacity: 0.92;
+    }
+
+    .facebook { background: #1877f2; }
+    .twitter { background: #000000; }
+    .tumblr { background: #36465d; }
+    .linkedin { background: #0a66c2; }
+    .reddit { background: #ff4500; }
+    .print {
+      background: #666;
+      border: none;
+      cursor: pointer;
+    }
+    .copy {
+      background: #2e8b57;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .social-column {
+        right: 10px;
+        gap: 10px;
+      }
+
+      .social-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .social-column {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        margin: 20px 0 30px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="social-column" aria-label="Social media actions">
+    <a
+      class="social-icon facebook"
+      href="https://www.facebook.com/sharer/sharer.php?u=https://yourusername.github.io/hamlet-page/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Share on Facebook"
+      title="Share on Facebook"
+    >f</a>
+
+    <a
+      class="social-icon twitter"
+      href="https://twitter.com/intent/tweet?url=https://yourusername.github.io/hamlet-page/&text=Hamlet%20Act%20III%20Scene%20I"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Share on Twitter"
+      title="Share on Twitter"
+    >X</a>
+
+    <a
+      class="social-icon tumblr"
+      href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://yourusername.github.io/hamlet-page/&title=Hamlet%2C%20Act%20III%20Scene%20I&caption=To%20be%2C%20or%20not%20to%20be"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Share on Tumblr"
+      title="Share on Tumblr"
+    >t</a>
+
+    <a
+      class="social-icon linkedin"
+      href="https://www.linkedin.com/sharing/share-offsite/?url=https://yourusername.github.io/hamlet-page/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Share on LinkedIn"
+      title="Share on LinkedIn"
+    >in</a>
+
+    <a
+      class="social-icon reddit"
+      href="https://www.reddit.com/submit?url=https://yourusername.github.io/hamlet-page/&title=Hamlet%20Act%20III%20Scene%20I"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Share on Reddit"
+      title="Share on Reddit"
+    >r</a>
+
+    <button
+      class="social-icon print"
+      onclick="window.print()"
+      aria-label="Print page"
+      title="Print page"
+      type="button"
+    >🖨</button>
+
+    <button
+      class="social-icon copy"
+      onclick="copyPageLink()"
+      aria-label="Copy page link"
+      title="Copy page link"
+      type="button"
+    >⧉</button>
+  </div>
+
   <div class="container">
     <header class="header">
       <img
@@ -22,47 +221,6 @@
       <strong>William Shakespeare</strong><br />
       1564 – 1616
     </div>
-
-    <nav class="social-buttons" aria-label="Social media and actions">
-      <a
-        class="facebook"
-        href="https://www.facebook.com/sharer/sharer.php?u=https://yourusername.github.io/hamlet-page/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Share on Facebook</a>
-
-      <a
-        class="twitter"
-        href="https://twitter.com/intent/tweet?url=https://yourusername.github.io/hamlet-page/&text=Hamlet%20Act%20III%20Scene%20I"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Share on Twitter</a>
-
-      <a
-        class="tumblr"
-        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://yourusername.github.io/hamlet-page/&title=Hamlet%2C%20Act%20III%20Scene%20I&caption=To%20be%2C%20or%20not%20to%20be"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Share on Tumblr</a>
-
-      <a
-        class="linkedin"
-        href="https://www.linkedin.com/sharing/share-offsite/?url=https://yourusername.github.io/hamlet-page/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Share on LinkedIn</a>
-
-      <a
-        class="reddit"
-        href="https://www.reddit.com/submit?url=https://yourusername.github.io/hamlet-page/&title=Hamlet%20Act%20III%20Scene%20I"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Share on Reddit</a>
-
-      <button class="print" onclick="window.print()">View Print Mode</button>
-      <button class="copy" onclick="copyPageLink()">Copy Page Link</button>
-      <button class="anthology" type="button">Add to Anthology</button>
-    </nav>
 
     <main class="poem">
       <p>To be, or not to be: that is the question:</p>
@@ -103,7 +261,7 @@
     </main>
 
     <footer class="footer">
-      Literary presentation page with styled social sharing buttons
+      Literary presentation page with social media icons on the right side
     </footer>
   </div>
 
