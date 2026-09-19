@@ -1,1 +1,120 @@
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #f5f1e8;
+  color: #2c2c2c;
+  line-height: 1.7;
+}
 
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fffdf8;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #4b2e2e;
+}
+
+.header h2 {
+  margin: 10px 0 0;
+  font-size: 1.1rem;
+  font-weight: normal;
+  color: #7a5c5c;
+}
+
+.meta {
+  text-align: center;
+  margin: 20px 0 30px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.social-buttons a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-buttons a:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.facebook {
+  background: #1877f2;
+}
+
+.twitter {
+  background: #1da1f2;
+}
+
+.tumblr {
+  background: #35465c;
+}
+
+.print {
+  background: #6c757d;
+}
+
+.copy {
+  background: #198754;
+}
+
+.anthology {
+  background: #8e44ad;
+}
+
+.poem {
+  white-space: pre-line;
+  font-size: 1.08rem;
+  color: #2f2a26;
+  padding: 20px;
+  background: #faf7f0;
+  border-left: 5px solid #c8a96b;
+  border-radius: 8px;
+}
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 20px;
+    padding: 24px;
+  }
+
+  .header h1 {
+    font-size: 1.7rem;
+  }
+
+  .poem {
+    font-size: 1rem;
+  }
+}
