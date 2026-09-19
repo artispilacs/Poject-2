@@ -15,7 +15,7 @@
         class="title-image"
       />
       <h1>Hamlet, Act III, Scene I</h1>
-      <h2>[To be, or not to be]</h2>
+      <p class="subtitle">[To be, or not to be]</p>
     </header>
 
     <div class="meta">
@@ -33,23 +33,35 @@
 
       <a
         class="twitter"
-        href="https://twitter.com/intent/tweet?text=Hamlet%20Act%20III%20Scene%20I&url=https://yourusername.github.io/hamlet-page/"
+        href="https://twitter.com/intent/tweet?url=https://yourusername.github.io/hamlet-page/&text=Hamlet%20Act%20III%20Scene%20I"
         target="_blank"
         rel="noopener noreferrer"
       >Share on Twitter</a>
 
       <a
         class="tumblr"
-        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://yourusername.github.io/hamlet-page/&title=Hamlet%2C%20Act%20III%2C%20Scene%20I"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://yourusername.github.io/hamlet-page/&title=Hamlet%2C%20Act%20III%20Scene%20I&caption=To%20be%2C%20or%20not%20to%20be"
         target="_blank"
         rel="noopener noreferrer"
       >Share on Tumblr</a>
 
-      <a class="print" href="javascript:window.print()">View Print Mode</a>
+      <a
+        class="linkedin"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=https://yourusername.github.io/hamlet-page/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Share on LinkedIn</a>
 
-      <a class="copy" href="https://yourusername.github.io/hamlet-page/" target="_blank">Copy Embed Code</a>
+      <a
+        class="reddit"
+        href="https://www.reddit.com/submit?url=https://yourusername.github.io/hamlet-page/&title=Hamlet%20Act%20III%20Scene%20I"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Share on Reddit</a>
 
-      <a class="anthology" href="#">Add to Anthology</a>
+      <button class="print" onclick="window.print()">View Print Mode</button>
+      <button class="copy" onclick="copyPageLink()">Copy Page Link</button>
+      <button class="anthology" type="button">Add to Anthology</button>
     </nav>
 
     <main class="poem">
@@ -94,5 +106,14 @@
       Literary presentation page with styled social sharing buttons
     </footer>
   </div>
+
+  <script>
+    function copyPageLink() {
+      const url = "https://yourusername.github.io/hamlet-page/";
+      navigator.clipboard.writeText(url)
+        .then(() => alert("Page link copied!"))
+        .catch(() => alert("Failed to copy link."));
+    }
+  </script>
 </body>
 </html>
