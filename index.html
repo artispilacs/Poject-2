@@ -1,259 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamlet, Act III, Scene I</title>
-  <style>
-    :root {
-      --bg: #f7f5f0;
-      --paper: #fbfaf7;
-      --text: #1e1e1e;
-      --muted: #6b6b6b;
-      --line: #d8d3c8;
-      --icon-bg: rgba(255, 255, 255, 0.72);
-      --icon-hover: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.75;
-      letter-spacing: 0.01em;
-    }
-
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 56px 24px 72px;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .title-image {
-      width: 100%;
-      max-width: 640px;
-      height: auto;
-      display: block;
-      margin: 0 auto 28px;
-      filter: grayscale(100%);
-      border: 1px solid var(--line);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 2.7rem);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .subtitle {
-      margin: 10px 0 0;
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--muted);
-    }
-
-    .meta {
-      text-align: center;
-      margin-bottom: 42px;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-
-    .meta strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .poem {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      padding: 34px 30px;
-    }
-
-    .poem p {
-      margin: 0 0 8px;
-      font-size: 1.08rem;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .social-column {
-      position: fixed;
-      top: 50%;
-      right: 18px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 1000;
-    }
-
-    .social-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      background: var(--icon-bg);
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      backdrop-filter: blur(4px);
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .social-icon:hover {
-      background: var(--icon-hover);
-      border-color: #bdb7aa;
-      transform: translateX(-2px);
-    }
-
-    .social-icon svg {
-      width: 17px;
-      height: 17px;
-      fill: currentColor;
-    }
-
-    button.social-icon {
-      cursor: pointer;
-      font: inherit;
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding: 34px 16px 48px;
-      }
-
-      .poem {
-        padding: 24px 18px;
-      }
-
-      .social-column {
-        position: static;
-        transform: none;
-        flex-direction: row;
-        justify-content: center;
-        margin: 0 0 24px;
-        padding-top: 18px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Workshop Notebook</title>
 </head>
 <body>
-  <div class="social-column" aria-label="Social media actions">
-    <a
-      class="social-icon"
-      href="https://www.facebook.com/sharer/sharer.php?u=https://yourusername.github.io/hamlet-page/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Share on Facebook"
-      title="Facebook"
-    >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6H16.8V4.8c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.9V11H8.4v3h2.5v8h2.6z"/>
-      </svg>
+  <h1>HTML Workshop Notebook</h1>
+  <h2>GET Method Example</h2>
+
+  <p>
+    Sample GET link:
+    <a href="https://www.google.com/search?q=HTML5+forms">
+      Search for HTML5 forms
     </a>
+  </p>
 
-    <a
-      class="social-icon"
-      href="https://twitter.com/intent/tweet?url=https://yourusername.github.io/hamlet-page/&text=Hamlet%20Act%20III%20Scene%20I"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Share on Twitter"
-      title="X / Twitter"
-    >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M18.9 2H22l-6.8 7.8L23 22h-6.1l-4.8-6.3L6.6 22H3.5l7.3-8.3L1 2h6.3l4.4 5.8L18.9 2zm-1.1 18h1.7L6.4 3.9H4.6L17.8 20z"/>
-      </svg>
-    </a>
+  <form
+    id="search-form"
+    action="https://www.google.com/search"
+    method="get"
+    target="_blank"
+    autocomplete="on"
+    accept-charset="UTF-8"
+  >
+    <fieldset>
+      <legend>Search the web</legend>
 
-    <button
-      class="social-icon"
-      onclick="window.print()"
-      aria-label="Print page"
-      title="Print"
-      type="button"
-    >
-      🖨
-    </button>
-  </div>
-
-  <div class="container">
-    <header class="header">
-      <img
-        src="Hamlet.jpg"
-        alt="Hamlet title image"
-        class="title-image"
-      />
-      <h1>Hamlet, Act III, Scene I</h1>
-      <p class="subtitle">[To be, or not to be]</p>
-    </header>
-
-    <div class="meta">
-      <strong>William Shakespeare</strong><br />
-      1564–1616
-    </div>
-
-    <main class="poem">
-      <p>To be, or not to be: that is the question:</p>
-      <p>Whether ’tis nobler in the mind to suffer</p>
-      <p>The slings and arrows of outrageous fortune,</p>
-      <p>Or to take arms against a sea of troubles,</p>
-      <p>And by opposing end them? To die: to sleep;</p>
-      <p>No more; and by a sleep to say we end</p>
-      <p>The heart-ache and the thousand natural shocks</p>
-      <p>That flesh is heir to, ’tis a consummation</p>
-      <p>Devoutly to be wish’d. To die, to sleep;</p>
-      <p>To sleep: perchance to dream: ay, there’s the rub;</p>
-      <p>For in that sleep of death what dreams may come</p>
-      <p>When we have shuffled off this mortal coil,</p>
-      <p>Must give us pause: there’s the respect</p>
-      <p>That makes calamity of so long life;</p>
-      <p>For who would bear the whips and scorns of time,</p>
-      <p>The oppressor’s wrong, the proud man’s contumely,</p>
-      <p>The pangs of despised love, the law’s delay,</p>
-      <p>The insolence of office and the spurns</p>
-      <p>That patient merit of the unworthy takes,</p>
-      <p>When he himself might his quietus make</p>
-      <p>With a bare bodkin? who would fardels bear,</p>
-      <p>To grunt and sweat under a weary life,</p>
-      <p>But that the dread of something after death,</p>
-      <p>The undiscover’d country from whose bourn</p>
-      <p>No traveller returns, puzzles the will</p>
-      <p>And makes us rather bear those ills we have</p>
-      <p>Than fly to others that we know not of?</p>
-      <p>Thus conscience does make cowards of us all;</p>
-      <p>And thus the native hue of resolution</p>
-      <p>Is sicklied o’er with the pale cast of thought,</p>
-      <p>And enterprises of great pith and moment</p>
-      <p>With this regard their currents turn awry,</p>
-      <p>And lose the name of action.—Soft you now!</p>
-      <p>The fair Ophelia! Nymph, in thy orisons</p>
-      <p>Be all my sins remember’d.</p>
-    </main>
-
-    <footer class="footer">
-      A minimal literary presentation
-    </footer>
-  </div>
+      <label for="query">Search term:</label>
+      <input
+        type="search"
+        id="query"
+        name="q"
+        placeholder="HTML5 forms"
+        required
+      >
+      <button type="submit">Search using GET</button>
+    </fieldset>
+  </form>
 </body>
 </html>
