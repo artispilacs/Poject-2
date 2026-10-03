@@ -1,42 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Workshop Notebook</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub User Explorer</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 16px;
+      background: #f4f6f8;
+      color: #24292f;
+      font: 16px/1.5 system-ui, sans-serif;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px;
+      background: white;
+      border: 1px solid #d0d7de;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px #0000000d;
+    }
+
+    h1 { margin-top: 0; }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #8c959f;
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    button {
+      padding: 9px 14px;
+      border: 0;
+      border-radius: 6px;
+      background: #0969da;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:hover { background: #0550ae; }
+    button:disabled { opacity: 0.6; cursor: wait; }
+
+    #request-link { overflow-wrap: anywhere; }
+
+    #status { min-height: 24px; }
+    #results { padding: 0; list-style: none; }
+
+    #results li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid #d8dee4;
+    }
+
+    #results img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    #results a { color: #0969da; }
+  </style>
 </head>
 <body>
-  <h1>HTML Workshop Notebook</h1>
-  <h2>GET Method Example</h2>
+  <main>
+    <h1>GitHub User Explorer</h1>
 
-  <p>
-    Sample GET link:
-    <a href="https://www.google.com/search?q=HTML5+forms">
-      Search for HTML5 forms
-    </a>
-  </p>
+    <label for="username">GitHub username</label>
+    <input id="username" value="octocat" placeholder="e.g. octocat" />
 
-  <form
-    id="search-form"
-    action="https://www.google.com/search"
-    method="get"
-    target="_blank"
-    autocomplete="on"
-    accept-charset="UTF-8"
-  >
-    <fieldset>
-      <legend>Search the web</legend>
+    <div class="buttons">
+      <button data-endpoint="followers">Followers</button>
+      <button data-endpoint="repos">Repos</button>
+      <button data-endpoint="events">Events</button>
+      <button data-endpoint="gists">Gists</button>
+    </div>
 
-      <label for="query">Search term:</label>
-      <input
-        type="search"
-        id="query"
-        name="q"
-        placeholder="HTML5 forms"
-        required
-      >
-      <button type="submit">Search using GET</button>
-    </fieldset>
-  </form>
+    <p>GET request: <a id="request-link" target="_blank" rel="noopener"></a></p>
+    <p id="status" aria-live="polite"></p>
+    <ul id="results"></ul>
+  </main>
+
+  <script>
+    const usernameInput = document.querySelector("#username");
+    const requestLink = document.querySelector("#request-link");
+    const status = document.querySelector("#status");
+    const results = document.querySelector("#results");
+    const buttons = document.querySelectorAll("button[data-endpoint]");
+
+    function makeUrl(endpoint) {
+      const username = usernameInput.value.trim();
+      return `https://api.github.com/users/${encodeURIComponent(username)}/${endpoint}`;
+    }
+
+    function updateLink(endpoint = "followers") {
+      const url = makeUrl(endpoint);
+      requestLink.href = url;
+      requestLink.textContent = url;
+    }
+
+    function getItemDetails(item, endpoint) {
+      if (endpoint === "followers") {
+        return {
+          title: item.login,
+          detail: "GitHub follower",
+          url: item.html_url,
+          avatar: item.avatar_url
+        };
+      }
+
+      if (endpoint === "repos") {
+        return {
+          title: item.name,
+          detail: item.description || "No description",
+          url: item.html_url
+        };
+      }
+
+      if (endpoint === "events") {
+        return {
+          title: item.type,
+          detail: item.repo?.name || "Repository not available",
+          url: item.repo?.name
+            ? `https://github.com/${item.repo.name}`
+            : null
+        };
+      }
+
+      return {
+        title: item.description || "Untitled gist",
+        detail: "GitHub gist",
+        url: item.html_url
+      };
+    }
+
+    function renderResults(data, endpoint) {
+      results.replaceChildren();
+
+      if (!Array.isArray(data) || data.length === 0) {
+        status.textContent = "No results found.";
+        return;
+      }
+
+      status.textContent = `Showing ${data.length} result(s).`;
+
+      data.forEach((item) => {
+        const details = getItemDetails(item, endpoint);
+        const li = document.createElement("li");
+
+        if (details.avatar) {
+          const image = document.createElement("img");
+          image.src = details.avatar;
+          image.alt = "";
+          li.append(image);
+        }
+
+        const text = document.createElement("div");
+        const title = document.createElement("strong");
+        title.textContent = details.title || "Untitled";
+        text.append(title);
+
+        const detail = document.createElement("div");
+        detail.textContent = details.detail || "";
+        text.append(detail);
+
+        if (details.url) {
+          const link = document.createElement("a");
+          link.href = details.url;
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = "Open on GitHub";
+          text.append(link);
+        }
+
+        li.append(text);
+        results.append(li);
+      });
+    }
+
+    async function loadData(endpoint) {
+      const username = usernameInput.value.trim();
+
+      if (!username) {
+        status.textContent = "Please enter a GitHub username.";
+        results.replaceChildren();
+        return;
+      }
+
+      const url = makeUrl(endpoint);
+      requestLink.href = url;
+      requestLink.textContent = url;
+      status.textContent = "Loading…";
+      results.replaceChildren();
+      buttons.forEach((button) => button.disabled = true);
+
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: { Accept: "application/vnd.github+json" }
+        });
+
+        if (!response.ok) {
+          throw new Error(`GitHub API returned ${response.status}`);
+        }
+
+        const data = await response.json();
+        renderResults(data, endpoint);
+      } catch (error) {
+        status.textContent = `${error.message}. Check the username or try again later.`;
+      } finally {
+        buttons.forEach((button) => button.disabled = false);
+      }
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => loadData(button.dataset.endpoint));
+    });
+
+    usernameInput.addEventListener("input", () => updateLink());
+    updateLink();
+  </script>
 </body>
 </html>
